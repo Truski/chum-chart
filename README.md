@@ -4,25 +4,29 @@ Make a D&amp;D alignment chart with your friends.  Send your friends a link so t
 ## Database Overview
 ```
 +-------------+
-|    Chart    |       +------------+
-+-------------+       |   Survey   |
-|  id         | <-+   +------------+
-|  urlid      |   |   |  id        |
-|  usrcount   |   +-- |  chartid   |
-|  lg         |       |  morality  |
-|  ln         |       |  ethics    |
-|  lc         |       |  name      |
-|  ng         |       |  email     |
-|  tn         |       +------------+
-|  ne         |
-|  cg         |
-|  cn         |
-|  ce         |
+|    Chart    |            +------------+
++-------------+            |   Survey   |
+|  id         | <----+     +------------+
+|  urlid      |   +--|---> |  id        |
+|  usrcount   |   |  +---- |  chartid   |
+|  creator    | --+        |  morality  |
+|  lg         | --+        |  ethics    |
+|  ln         | --+        |  name      |
+|  lc         | --+        |  email     |
+|  ng         | --+        +------------+
+|  tn         | --+
+|  ne         | --+
+|  cg         | --+
+|  cn         | --+
+|  ce         | --+
 +-------------+
 ```
 
-## Survey to Alignment Algorithm
+## Survey to Score Algorithm
+* Every question will have a weight of either -1, -1/3, 1/3, or 1 in either the ethics or morility axis.
+* We will take the average of all question weights to produce a score for morality and a score for ethics.
 
+## Score to Alignment Algorithm
 1. Calculate distances from each point to each corner of square.
     1. Select the minimum distance to a corner that hasn't been taken.
     2. Put selected point with corner value.
