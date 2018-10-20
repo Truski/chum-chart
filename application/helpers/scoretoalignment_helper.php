@@ -4,10 +4,12 @@ class Point {
  
     public $x;
     public $y;
+    public $id;
  
-    function __construct($x, $y) {
+    function __construct($x, $y, $id) {
         $this->x = $x;
         $this->y = $y;
+        $this->id = $id;
     }
  
     function distanceTo($point) {
@@ -23,7 +25,13 @@ class ScoreToAlignment {
     public $points;
     public $fixed;
  
-    function __construct($array) {
+    function __construct($xs, $ys, $ids) {
+
+        $array = array();
+        for ($i = 0; $i < $xs.length(); $i++) {
+            $array[$i] = new Point($xs[$i], $ys[$i], $ids[$i]);
+        }
+
         $this->points = $array;
         $this->fixed = array(
             new Point(-1, 1),
