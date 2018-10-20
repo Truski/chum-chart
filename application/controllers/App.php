@@ -29,13 +29,13 @@ class App extends CI_Controller {
 		$mScore = $dataObj->mScore;
 
 		// Send survey data to database
-		InsertServey($urlid, $mScore, $eScore, $name, $email);
+		InsertSurvey($urlid, $mScore, $eScore, $name, $email);
 
 		// Ask server for number of users in urlid
 		$numSurveys = getUserCount($urlid);
 
 		// If there's 9 surveys, create the alignment chart!
-		if ($numServeys == 9) {
+		if ($numSurveys == 9) {
 			createChart($urlid);
 		}
 		
