@@ -57,11 +57,71 @@ html {
   -ms-text-size-adjust: 100%;
   text-size-adjust: 100%;
 
+  color: #181818;
+  font-size: 1.1em;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin-left: 2em;
+  margin-right: 2em;
   background-color: #F2ECDA;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3em;
+  font-weight: bold;
+  padding-bottom: .25em;
+}
+
+h3 {
+  font-size:1.5em;
+  padding-bottom: .75em;
 }
 
 img {
   transform: rotate(25deg);
   height: 64px;
   width: 64px;
+}
+
+h4, h5, h6, p {
+  padding-bottom: 1em;
+}
+
+#container {
+  padding: 2em;
+}
+
+.answer {
+  border: 2px solid black;
+  border-radius: 15px;
+  padding-top:.5em;
+  padding-left: 2.5em;
+  padding-right: 2.5em;
+  margin-bottom: .75em;
+}
+
+.answer:hover {
+  background-color: blue;
+  cursor: pointer;
+  color: #E8E8E8;
+  font-weight: bold;
+  padding-left: .5em;
+  padding-right: .5em;
+}
+
+.answer > p {
+  text-align: center;
+}
+
+@media screen and (min-width: 900px) {
+  body {
+    margin-left: 25%;
+    margin-right: 25%;
+  }
+  html {
+    background-color: #5656AA;
+  }
 }
