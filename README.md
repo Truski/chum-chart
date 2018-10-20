@@ -6,15 +6,14 @@ Make a D&amp;D alignment chart with your friends.  Send your friends a link so t
 +-------------+
 |    Chart    |            +------------+
 +-------------+            |   Survey   |
-|  id         | <----+     +------------+
-|  urlid      |   +--|---> |  id        |
-|  usrcount   |   |  +---- |  chartid   |
-|  creator    | --+        |  morality  |
-|  lg         | --+        |  ethics    |
-|  ln         | --+        |  name      |
-|  lc         | --+        |  email     |
-|  ng         | --+        +------------+
-|  tn         | --+
+|  urlid      | <----+     +------------+
+|  usrcount   |   +--|---> |  id        |
+|  creator    | --+  +---- |  chartid   |
+|  lg         | --+        |  morality  |
+|  ln         | --+        |  ethics    |
+|  lc         | --+        |  name      |
+|  ng         | --+        |  email     |
+|  tn         | --+        +------------+
 |  ne         | --+
 |  cg         | --+
 |  cn         | --+

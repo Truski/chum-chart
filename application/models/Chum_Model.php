@@ -10,7 +10,7 @@ class Chum_Model extends CI_Model{
 	public function insertSurvey($id, $chartID, $morality, $ethics, $name, $email){
 		$this->query = $this->db->query('SELECT * FROM Chart WHERE chartid=chartID');
 		if(empty($query)){
-			$this->db->query('INSERT into Charts (chartid, usrcount, lg, ln, lc, ng, tn, ne, cg, cn, ce) VALUES (chartID, 1, null, null, null, null null, null, null, null');
+			$this->db->query('INSERT into Charts (chartid, usrcount, creator, lg, ln, lc, ng, tn, ne, cg, cn, ce) VALUES (chartID, 1, id, null, null, null, null null, null, null, null');
 		}
 		//Insert Survey (jpg id not explicitly stated ?)
 		$this->db->query('INSERT into Survey (chartid, morality, ethics, name, email) VALUES (morality, ethics, name, email)');
