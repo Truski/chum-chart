@@ -37,5 +37,11 @@ class Chum_Model extends CI_Model{
 	public function getSurveys(chartID){
 		return $this->db->query('SELECT * FROM Survey WHERE charid = chartID');
 	}
+	/*
+	 * yikes
+	 */
+	public function fillChart(chartID, lg, ln, lc, ng, tn, ne, cg, cn, ce){
+		$this->db->query('UPDATE Chart SET lg=lg, ln=ln, lc=lc, ng=ng, tn=tn, ne=ne, cg=cg, cn=cn, ce=ce, WHERE chartid=chartID');  
+	}	
 
 }
