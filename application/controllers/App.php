@@ -44,8 +44,41 @@ class App extends CI_Controller {
 	private function createChart($urlid) {
 
 		// Get all surveys with corresponding urlid
-
+		$surveys = getSurveys($urlid);
 		
+		$ethics = array_fill(0, $surveys.length(), 0);
+		$morality = array_fill(0, $surveys.length(), 0);
+		$id = array_fill(0, $surveys.length(), 0);
+		for ($i = 0; $i < $surveys.length(); $i++) {
+			$ethics[$i] = $surveys[$i]->ethics;
+			$morality[$i] = $surveys[$i]->morality;
+			$id[$i] = $surveys[$i]->id;
+		}
+
+		$align = ScoreToAlignment($ethics, $morality, $id);
+		$best = $align->go();
+
+		$reassigned = array_fill(0, $surveys.length(), 0);
+		for ($i = 0; $i < $best.length(); $i++) {
+			for ($j = 0; $j < $surveys.length(); $j++) {
+				if ($best[$i] == $surveys[$j]) {
+					$reassigned[$i] = $surveys[$j];
+					break;
+				}
+			}
+		}
+
+		fillChart($urlid,
+			$reassigned[2],
+			$reassigned[5],
+			$reassigned[8],
+			$reassigned[1],
+			$reassigned[4],
+			$reassigned[7],
+			$reassigned[0],
+			$reassigned[3],
+			$reassigned[6]
+		);
 
 	}
 
