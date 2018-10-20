@@ -1,6 +1,12 @@
 <?php
-class Chum_Model extends CI_Model{
+class Chumbase extends CI_Model {
 	public $query;
+
+	public function __construct()
+	{
+		parent::construct();
+		$this->load->database();
+	}
 
 	/*
 		Insert a Survery (id, chartid, morality, ethics, name, email)
