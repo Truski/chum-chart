@@ -22,6 +22,13 @@ Make a D&amp;D alignment chart with your friends.  Send your friends a link so t
 +-------------+
 ```
 
+## View to Controller Communication
+* When the view has finished completing a form, the view will send a JSON object to the app controller with the following attributes:
+    * name of user
+    * email of user
+    * array of answers from questions (first half is ethics, other is morality)
+    * urlid (can be null for new chart)
+
 ## Survey to Score Algorithm
 * Every question will have a weight of either -1, -1/3, 1/3, or 1 in either the ethics or morality axis.
 * We will take the average of all question weights to produce a score for morality and a score for ethics.
