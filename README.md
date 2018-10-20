@@ -8,8 +8,8 @@ Make a D&amp;D Alignment Chart with your Friends
 +-------------+       |   Survey   |
 |  id         | <-+   +------------+
 |  urlid      |   |   |  id        |
-|  usrcount   |   |   |  chartid   |
-|  lg         |   +-- |  morality  |
+|  usrcount   |   +-- |  chartid   |
+|  lg         |       |  morality  |
 |  ln         |       |  ethics    |
 |  lc         |       |  name      |
 |  ng         |       |  email     |
