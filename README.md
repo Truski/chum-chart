@@ -2,7 +2,7 @@
 Make a D&amp;D Alignment Chart with your Friends
 
 ## Database Overview
-
+```
 +-------------+
 |    Chart    |       +------------+
 +-------------+       |   Survey   |
@@ -19,3 +19,4 @@ Make a D&amp;D Alignment Chart with your Friends
 |  cn         |
 |  ce         |
 +-------------+
+```
