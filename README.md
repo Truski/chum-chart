@@ -23,7 +23,7 @@ Make a D&amp;D alignment chart with your friends.  Send your friends a link so t
 ```
 
 ## Survey to Score Algorithm
-* Every question will have a weight of either -1, -1/3, 1/3, or 1 in either the ethics or morility axis.
+* Every question will have a weight of either -1, -1/3, 1/3, or 1 in either the ethics or morality axis.
 * We will take the average of all question weights to produce a score for morality and a score for ethics.
 
 ## Score to Alignment Algorithm (FAILURE)
