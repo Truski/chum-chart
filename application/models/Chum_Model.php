@@ -30,5 +30,12 @@ class Chum_Model extends CI_Model{
 	public function getUserCount(chartID){
 		return $this->db->query('SELECT usrcount FROM Chart WHERE chartid=chartID');
 	}
+	/*
+		getSurveys
+		returns array of objects where each object is a row in Survey table
+	*/
+	public function getSurveys(chartID){
+		return $this->db->query('SELECT * FROM Survey WHERE charid = chartID');
+	}
 
 }
