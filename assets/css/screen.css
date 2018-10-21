@@ -92,8 +92,16 @@ h4, h5, h6, p {
 
 #container {
   background-color: #F2ECDA;
-  padding: 5em;
+  padding: 2em;
   margin: 3em auto;
+}
+
+@media screen and (min-width:900px) {
+  #container {
+    background-color: #F2ECDA;
+    padding: .5em;
+    margin: 2em auto;
+  }
 }
 
 .answer {
