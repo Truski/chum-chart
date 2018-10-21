@@ -149,7 +149,9 @@ class App extends CI_Controller {
 		$data['cg'] = array($all->cg, $cgName);
 		$data['cn'] = array($all->cn, $cnName);
 		$data['ce'] = array($all->ce, $ceName);
-		$this->load->view('chart', $data);	
+		$this->load->view('header');
+		$this->load->view('chart', $data);
+		$this->load->view('footer');	
 	}
 }
 ?>
