@@ -63,8 +63,8 @@ html {
 }
 
 body {
-  padding-left: 2em;
-  padding-right: 2em;
+  padding-left: .5em;
+  padding-right: .5em;
   background-color: #F2ECDA;
   min-height: 100vh;
 }
@@ -91,7 +91,7 @@ h4, h5, h6, p {
 }
 
 #container {
-  padding: 2em;
+  padding: 1.5em;
 }
 
 .answer {
