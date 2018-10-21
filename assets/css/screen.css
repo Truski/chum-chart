@@ -91,10 +91,9 @@ h4, h5, h6, p {
 }
 
 #container {
-  padding: 1.5em;
   background-color: #F2ECDA;
-  padding: 10px;
-  margin: 15px;
+  padding: 5em;
+  margin: 3em auto;
 }
 
 .answer {
