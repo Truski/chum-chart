@@ -18,6 +18,14 @@ class App extends CI_Controller {
 
 	public function quiz($urlid = NULL)
 	{
+		if($urlid != NULL){
+			if($this->chumbase->getuserCount($urlid) == 9){
+				$this->getChart($urlid);
+				return;
+			}
+		}
+
+
 		$data = array();
 		$data['hasURL'] = ($urlid != NULL);
 		if($urlid != NULL){
@@ -80,6 +88,16 @@ class App extends CI_Controller {
 		$eScore = $dataObj->eScore;
 		$mScore = $dataObj->mScore;
 
+		if($urlid != NULL){
+			if($this->chumbase->getUserCount($urlid) == 9){
+				$result = new stdclass;
+				$result->remaining = 0;
+				$result->urlid = $urlid;
+				echo json_encode($result);
+				return;
+			}
+		}
+
 		// Send survey data to database
 		$urlid = $this->chumbase->insertQuiz($urlid, $mScore, $eScore, $name, $photourl);
 
@@ -96,62 +114,51 @@ class App extends CI_Controller {
 		echo json_encode($result);
 	}
 
-	public function getChart($urlid) {
+	private function getChart($urlid) {
 		// Call model function
-		$all = getChart($urlid);
+		$all = $this->chumbase->getChart($urlid);
 
 		//get 9 categories and associating user id
 		$data = array();
 		//get associated surveys for chartid
-		$people = getSurveys($all->id); 
+		$people = $this->chumbase->getSurveys($urlid); 
 		//this is an array of objects where each object is (id, name, ethics, morality)
 
-		//get name for each person lol
-		$lgName; $lnName; $lcName; $ngName;
-		$tnName; $neName; $cgName; $cnName; $ceName;
 		//loop through people, if person id matches lg, ln, lc etc ---> assign name 
+		echo var_dump($people);
 		foreach ($people as $person){
 			switch($person->id){
 				case $all->lg:
-					$lgName = $person->name;
+					$data['lg'] = $person;
 					break;
 				case $all->ln:
-					$lnName = $person->name;
+					$data['ln'] = $person;
 					break;
 				case $all->lc:
-					$lcName = $person->name;
+					$data['lc'] = $person;
 					break;
 				case $all->ng:
-					$ngName = $person->name;
+					$data['ng'] = $person;
 					break;
 				case $all->tn:
-					$tnName = $person->name;
+					$data['tn'] = $person;
 					break;
 				case $all->ne:	
-					$neName = $person->name;
+					$data['ne'] = $person;
 					break;
 				case $all->cg:
-					$cgName = $person->name;
+					$data['cg'] = $person;
 					break;
 				case $all->cn:
-					$cnName = $person->name;
+					$data['cn'] = $person;
 					break;
 				case $all->ce:
-					$ceName = $person->name;
+					$data['ce'] = $person;
 					break;
-
 			}
 		}
-		$data['lg'] = array($all->lg, $lgName);
-		$data['ln'] = array($all->ln, $lnName);
-		$data['lc'] = array($all->lc, $lcName);
-		$data['ng'] = array($all->ng, $ngName);
-		$data['tn'] = array($all->tn, $tnName);
-		$data['ne'] = array($all->ne, $neName);
-		$data['cg'] = array($all->cg, $cgName);
-		$data['cn'] = array($all->cn, $cnName);
-		$data['ce'] = array($all->ce, $ceName);
 		$this->load->view('header');
+		echo var_dump($data);
 		$this->load->view('chart', $data);
 		$this->load->view('footer');	
 	}
