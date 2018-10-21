@@ -26,7 +26,8 @@ class Chumbase extends CI_Model {
 		} else {
 			// Just add it to the existing
 			$chartid = $this->db->query('SELECT id FROM chart WHERE urlid=?', array($urlid))->result()[0]->id;
-			$this->db->query('INSERT INTO user (chartid, morality, ethics, name) VALUES (?, ?, ?, ?, ?)', array($chartid, $morality, $ethics, $name));
+			$this->db->query('INSERT INTO user (chartid, morality, ethics, name) VALUES (?, ?, ?, ?)', array($chartid, $morality, $ethics, $name));
+			$this->db->query('UPDATE chart SET usrcount=usrcount+1 WHERE urlid=?', array($urlid));
 			return $urlid;
 		}
 	}
