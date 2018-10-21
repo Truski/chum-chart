@@ -104,15 +104,15 @@ class ScoreToAlignment {
 }
  
 $points = array(
-    new Point(-.5,.5),
-    new Point(0, .5),
-    new Point(.5, .5),
-    new Point(-.5, 0),
-    new Point(0, 0),
-    new Point(.5, 0),
-    new Point(-.5, -.5),
-    new Point(0, -.5),
-    new Point(.5, 0)
+    new Point(-.5,.5, 0),
+    new Point(0, .5, 0),
+    new Point(.5, .5, 0),
+    new Point(-.5, 0, 0),
+    new Point(0, 0, 0),
+    new Point(.5, 0, 0),
+    new Point(-.5, -.5, 0),
+    new Point(0, -.5, 0),
+    new Point(.5, 0, 0)
 );
  
 // $o = new ScoreToAlignment($points);
