@@ -63,8 +63,8 @@ html {
 }
 
 body {
-  margin-left: 2em;
-  margin-right: 2em;
+  padding-left: 2em;
+  padding-right: 2em;
   background-color: #F2ECDA;
   min-height: 100vh;
 }
@@ -116,12 +116,3 @@ h4, h5, h6, p {
   text-align: center;
 }
 
-@media screen and (min-width: 900px) {
-  body {
-    margin-left: 25%;
-    margin-right: 25%;
-  }
-  html {
-    background-color: #5656AA;
-  }
-}

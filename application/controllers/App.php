@@ -30,8 +30,9 @@ class App extends CI_Controller {
 
 	public function table($urlid = NULL)
 	{
+		
 		$this->load->view('header');
-		$this->load->view('table');
+		$this->load->view('chart');
 		$this->load->view('footer');
 	}
 
@@ -105,8 +106,18 @@ class App extends CI_Controller {
 		// Call model function
 		$all = getChart($urlid);
 
-		// Get urlid from table in database
-
+		//get 9 categories and associating user id
+		$data = array();
+		$data['lg'] = $all->lg;
+		$data['ln'] = $all->ln;
+		$data['lc'] = $all->lc;
+		$data['ng'] = $all->ng;
+		$data['tn'] = $all->tn;
+		$data['ne'] = $all->ne; 
+		$data['cg'] = $all->cg;
+		$data['cn'] = $all->cn;
+		$data['ce'] = $all->ce;
+		$this->load->view('chart', $data);	
 	}
 
 }
