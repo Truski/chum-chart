@@ -1,21 +1,24 @@
 
-
 <div class="bigflexcontainer">
 
     <div class="smallflexcontainer">
-        <div class="flexkiddo">
+        <div class="flexkiddo" style="width:70px">
             <!-- nothing -->
         </div>
         <div class="flexkiddo header">
+            Lawful
         </div>
         <div class="flexkiddo header">
+            Neutral
         </div>
         <div class="flexkiddo header">
+            Chaotic
         </div>
     </div>
 
     <div class="smallflexcontainer">
-        <div class="flexkiddo header">
+        <div class="flexkiddo header left">
+            Good
         </div>
         <div class="flexkiddo" id="1">
             <img src="<?=$lg->photourl?>" />
@@ -30,7 +33,8 @@
     </div>
 
     <div class="smallflexcontainer">
-        <div class="flexkiddo header">
+        <div class="flexkiddo header left">
+            Neutral
         </div>
         <div class="flexkiddo" id="4">
             <img src="<?=$ln->photourl?>" />
@@ -45,7 +49,8 @@
     </div>
 
     <div class="smallflexcontainer">
-        <div class="flexkiddo header">
+        <div class="flexkiddo header left">
+            Evil
         </div>
         <div class="flexkiddo" id="7">
             <img src="<?=$le->photourl?>" />
@@ -68,20 +73,25 @@
     flex-direction: column;
     align-items: stretch;
     background-color: black;
-    width: 390px;
+    width: 450px;
     height: 390px;
     padding:10px;
 }
 
 .smallflexcontainer {
     display: flex;
-    align-items: stretch;
+    justify-content: space-around;
+    width: 100%;
+    flex-direction: run;
+    align-items: center;
+    flex-grow: 1;
 }
 
 .flexkiddo {
     text-align: center;
-    font-size: 14pt;
+    font-size: 18pt;
     padding: 10px;
+    flex-grow: 1;
 }
 
 .flexkiddo > img {
@@ -90,7 +100,15 @@
 }
 
 .header {
-    font-weight: bold;
+    color: white;
+    width: 100px;
+    font-family: IMPACT;
+    
+}
+
+.left {
+    text-align: right;
+    vertical-align: center;
 }
 
 #1 { background-color: #FFFFFF}
