@@ -125,7 +125,6 @@ class App extends CI_Controller {
 		//this is an array of objects where each object is (id, name, ethics, morality)
 
 		//loop through people, if person id matches lg, ln, lc etc ---> assign name 
-		echo var_dump($people);
 		foreach ($people as $person){
 			switch($person->id){
 				case $all->lg:
@@ -135,7 +134,7 @@ class App extends CI_Controller {
 					$data['ln'] = $person;
 					break;
 				case $all->lc:
-					$data['lc'] = $person;
+					$data['le'] = $person;
 					break;
 				case $all->ng:
 					$data['ng'] = $person;
@@ -158,7 +157,6 @@ class App extends CI_Controller {
 			}
 		}
 		$this->load->view('header');
-		echo var_dump($data);
 		$this->load->view('chart', $data);
 		$this->load->view('footer');	
 	}

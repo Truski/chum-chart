@@ -1,3 +1,5 @@
+
+
 <div class="bigflexcontainer">
 
     <div class="smallflexcontainer">
@@ -5,60 +7,54 @@
             <!-- nothing -->
         </div>
         <div class="flexkiddo header">
-            Lawful
         </div>
         <div class="flexkiddo header">
-            Neutral
         </div>
         <div class="flexkiddo header">
-            Chaotic
         </div>
     </div>
 
     <div class="smallflexcontainer">
         <div class="flexkiddo header">
-            Good
         </div>
         <div class="flexkiddo" id="1">
-
+            <img src="<?=$lg->photourl?>" />
         </div>
         <div class="flexkiddo" id="2">
-
+            <img src="<?=$ng->photourl?>" />
         </div>
         <div class="flexkiddo" id="3">
-
+            <img src="<?=$cg->photourl?>" />
         </div>
         
     </div>
 
     <div class="smallflexcontainer">
         <div class="flexkiddo header">
-            Neutral
         </div>
         <div class="flexkiddo" id="4">
-
+            <img src="<?=$ln->photourl?>" />
         </div>
         <div class="flexkiddo" id="5">
-
+            <img src="<?=$tn->photourl?>" />
         </div>
         <div class="flexkiddo" id="6">
-
+            <img src="<?=$cn->photourl?>" />
         </div>
         
     </div>
 
     <div class="smallflexcontainer">
         <div class="flexkiddo header">
-            Evil
         </div>
         <div class="flexkiddo" id="7">
-
+            <img src="<?=$le->photourl?>" />
         </div>
         <div class="flexkiddo" id="8">
-
+            <img src="<?=$ne->photourl?>" />
         </div>
         <div class="flexkiddo" id="9">
-
+            <img src="<?=$ce->photourl?>" />
         </div>
         
     </div>
@@ -71,6 +67,10 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    background-color: black;
+    width: 390px;
+    height: 390px;
+    padding:10px;
 }
 
 .smallflexcontainer {
@@ -81,6 +81,12 @@
 .flexkiddo {
     text-align: center;
     font-size: 14pt;
+    padding: 10px;
+}
+
+.flexkiddo > img {
+    width: 100px;
+    height: 100px;
 }
 
 .header {

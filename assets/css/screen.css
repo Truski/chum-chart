@@ -80,14 +80,14 @@ h3 {
   padding-bottom: .75em;
 }
 
-img {
+h4, h5, h6, p {
+  padding-bottom: 1em;
+}
+
+#logo {
   transform: rotate(25deg);
   height: 64px;
   width: 64px;
-}
-
-h4, h5, h6, p {
-  padding-bottom: 1em;
 }
 
 #container {
