@@ -28,14 +28,6 @@ class App extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	public function table($urlid = NULL)
-	{
-		
-		$this->load->view('header');
-		$this->load->view('chart');
-		$this->load->view('footer');
-	}
-
 	private function createChart($urlid) {
 
 		// Get all surveys with corresponding urlid
@@ -108,17 +100,56 @@ class App extends CI_Controller {
 
 		//get 9 categories and associating user id
 		$data = array();
-		$data['lg'] = $all->lg;
-		$data['ln'] = $all->ln;
-		$data['lc'] = $all->lc;
-		$data['ng'] = $all->ng;
-		$data['tn'] = $all->tn;
-		$data['ne'] = $all->ne; 
-		$data['cg'] = $all->cg;
-		$data['cn'] = $all->cn;
-		$data['ce'] = $all->ce;
+		//get associated surveys for chartid
+		$people = getSurveys($all->id); 
+		//this is an array of objects where each object is (id, name, ethics, morality)
+
+		//get name for each person lol
+		public $lgName; public $lnName; public $lcName; public $ngName;
+		public $tnName; public $neName; public $cgName; public $cnName; public $ceName;
+		//loop through people, if person id matches lg, ln, lc etc ---> assign name 
+		for each ($people as $person){
+			switch($person->id){
+				case $all->lg:
+					$lgName = $person->name;
+					break;
+				case $all->ln:
+					$lnName = $person->name;
+					break;
+				case $all->lc:
+					$lcName = $person->name;
+					break;
+				case $all->ng:
+					$ngName = $person->name;
+					break;
+				case $all->tn:
+					$tnName = $person->name;
+					break;
+				case $all->ne:	
+					$neName = $person->name;
+					break;
+				case $all->cg:
+					$cgName = $person->name;
+					break;
+				case $all->cn:
+					$cnName = $person->name;
+					break;
+				case $all->ce:
+					$ceName = $person->name;
+					break;
+
+			}
+		}
+		$data['lg'] = array($all->lg, $lgName);
+		$data['ln'] = array($all->ln, $lnName);
+		$data['lc'] = array($all->lc, $lcName);
+		$data['ng'] = array($all->ng, $ngName);
+		$data['tn'] = array($all->tn, $tnName);
+		$data['ne'] = array($all->ne, $neName);
+		$data['cg'] = array($all->cg, $cgName);
+		$data['cn'] = array($all->cn, $cnName);
+		$data['ce'] = array($all->ce, $ceName);
 		$this->load->view('chart', $data);	
 	}
-
 }
 ?>
