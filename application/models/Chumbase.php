@@ -13,20 +13,20 @@ class Chumbase extends CI_Model {
 		If chartid not found in Charts:
 		Insert a Chart(chartid, 1, null, null, ...)
 	*/
-	public function insertQuiz($urlid, $chartID, $morality, $ethics, $name){
+	public function insertQuiz($urlid, $morality, $ethics, $name){
 		$query = "SELECT MAX(id) as max FROM user;";
 		$userid = $this->db->query($query)->result()[0]->max + 1;
-		if($urlid == -1){
+		if($urlid == NULL){
 			// Create a new chart
 			$urlid = rand(10000, 99999);
 			$this->db->query('INSERT INTO chart (urlid, creator, usrcount) VALUES (?, ?, 1)', array($urlid, $userid));
-			$chartid = $this->db->query('SELECT MAX(id) as max FROM chart')[0]->max + 1;
-			$this->db->query('INSERT INTO user (chartid, morality, ethics, name', array($chartid, $morality, $ethics, $name));
+			$chartid = $this->db->query('SELECT MAX(id) as max FROM chart')->result()[0]->max +1;
+			$this->db->query('INSERT INTO user (chartid, morality, ethics, name) VALUES (?, ?, ?, ?)', array($chartid, $morality, $ethics, $name));
 			return $urlid;
 		} else {
 			// Just add it to the existing
 			$chartid = $this->db->query('SELECT id FROM chart WHERE urlid=?', array($urlid))->result()[0]->id;
-			$this->db->query('INSERT INTO user (chartid, morality, ethics, name) VALUES (?, ?, ?, ?, ?)', array($chartID, $morality, $ethics, $name));
+			$this->db->query('INSERT INTO user (chartid, morality, ethics, name) VALUES (?, ?, ?, ?, ?)', array($chartid, $morality, $ethics, $name));
 			return $urlid;
 		}
 	}
@@ -36,28 +36,28 @@ class Chumbase extends CI_Model {
 		Returns an object representing a row
 	*/
 	public function getChart($chartID){
-		return $this->db->query('SELECT * FROM Chart WHERE chartid=?', array($chardID));
+		return $this->db->query('SELECT * FROM chart WHERE chartid=?', array($chardID));
 	}
 
 	/*
 		
 	*/
-	public function getUserCount($chartID){
-		return $this->db->query('SELECT usrcount FROM Chart WHERE chartid=?', array($chardID));
+	public function getUserCount($urlid){
+		return $this->db->query('SELECT usrcount FROM chart WHERE urlid=?', array($urlid))->result()[0]->usrcount;
 	}
 	/*
 		getSurveys
 		returns array of objects where each object is a row in Survey table
 	*/
 	public function getSurveys($chartID){
-		return $this->db->query('SELECT * FROM Survey WHERE charid = ?', array($chartID));
+		return $this->db->query('SELECT * FROM user WHERE chartid = ?', array($chartID));
 	}
 
 	/*
 	 * yikes
 	 */
 	public function fillChart($chartID, $lg, $ln, $lc, $ng, $tn, $ne, $cg, $cn, $ce){
-		$this->db->query('UPDATE Chart SET lg=?, ln=?, lc=?, ng=?, tn=?, ne=?, cg=?, cn=?, ce=?, WHERE chartid=?', array($lg, $ln, $lc, $ng, $tn, $ne, $cg, $cn, $ce, $chartID));  
+		$this->db->query('UPDATE chart SET lg=?, ln=?, lc=?, ng=?, tn=?, ne=?, cg=?, cn=?, ce=?, WHERE chartid=?', array($lg, $ln, $lc, $ng, $tn, $ne, $cg, $cn, $ce, $chartID));  
 	}	
 
 }

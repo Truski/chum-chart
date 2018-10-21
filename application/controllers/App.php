@@ -18,8 +18,13 @@ class App extends CI_Controller {
 
 	public function quiz($urlid = NULL)
 	{
+		$data = array();
+		$data['hasURL'] = ($urlid != NULL);
+		if($urlid != NULL){
+			$data['urlid'] = $urlid;
+		}
 		$this->load->view('header');
-		$this->load->view('quiz');
+		$this->load->view('quiz', $data);
 		$this->load->view('footer');
 	}
 
@@ -31,7 +36,7 @@ class App extends CI_Controller {
 	}
 
 	public function submitData() {
-		$json = $this->input->post("quiz");
+		$json = $this->input->post("data");
 		$obj = json_decode($json);
 
 		$name = $obj->name;
@@ -42,17 +47,7 @@ class App extends CI_Controller {
 		$mScore = $dataObj->mScore;
 
 		// Send survey data to database
-		$success = $this->chumbase->insertQuiz($urlid, $mScore, $eScore, $name);
-
-		if($success == -1){ // Invalid quiz code
-			$result = new stdclass;
-			$result->success = false;
-			$result->message = "That quiz code is invalid!";
-			echo json_encode($result);
-			return;
-		} else if ($success == 0) { // Created a new chart 
-
-		}
+		$urlid = $this->chumbase->insertQuiz($urlid, $mScore, $eScore, $name);
 
 		// Ask server for number of users in urlid
 		$numSurveys = $this->chumbase->getUserCount($urlid);

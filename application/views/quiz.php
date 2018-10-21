@@ -53,32 +53,57 @@ $qax = array(
 );
 ?>
 
-<?php for($i = 0; $i < 10; $i += 5): ?>
+<div class="question-box" id="namequestion">
+  <h2>What is your name?</h2>
+  <input type="text" name="name" /> 
+  <button id="nextbutton">Continue</button>
+</div>
 
-<div <?php if($i != 0) echo 'style="display:none"';?> class="question-box" id="question<?=$i/5+1?>">
-  <h3 class="question"><?=($i/5+1)?>. <?=$question[i]?></h3>
+<?php for($i = 0; $i < 50; $i += 5): ?>
 
-  <div class="answer" data-answer-number="<?=$j?>">
-    <p><?=$qax[i+1]?></p>
+<div style="display:none"' class="question-box" id="question<?=$i/5?>">
+  <h3 class="question"><?=($i/5+1)?>. <?=$qax[$i]?></h3>
 
-  <div class="answer" data-answer-number="<?=$j?>">
-    <p><?=$qax[i+2]?></p>
+  <div class="answer" data-answer-number="0">
+    <p><?=$qax[$i+1]?></p>
+  </div>
 
-  <div class="answer" data-answer-number="<?=$j?>">
-    <p><?=$qax[i+3]?></p>
+  <div class="answer" data-answer-number="1">
+    <p><?=$qax[$i+2]?></p>
+  </div>
 
-  <div class="answer" data-answer-number="<?=$j?>">
-    <p><?=$qax[i+4]?></p>
+  <div class="answer" data-answer-number="2">
+    <p><?=$qax[$i+3]?></p>
+  </div>
+
+  <div class="answer" data-answer-number="3">
+    <p><?=$qax[$i+4]?></p>
   </div>
 </div>
 <?php endfor;?>
+<div style="display:block" class="question-box" id="picturequestion">
+  <h2>You're almost done! Just upload your photo!</h2>
+  <input type="file" name="photo" />
+  <button id="submitbutton">Finish</button>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <script>
 
-var i = 1;
+<?php if($hasURL): ?>
+var urlid = <?=$urlid?>;
+<?php else: ?>
+var urlid = null;
+<?php endif; ?>
+
+var i = 0;
 var answers = [];
+
+$('#nextbutton  ').click(function() {
+  $('#namequestion').hide();
+  $('#question0').show();
+});
 
 $('.answer').click(function(e) {
   // Save answer
@@ -88,6 +113,29 @@ $('.answer').click(function(e) {
   i++;
   $('#question'+i).show();
   console.log(answers);
+  if(i == 10){
+    $('#picturequestion').show();
+  }
+});
+
+$('#submitbutton').click(function() {
+  console.log("LOLOL");
+
+  var obj = {};
+  obj.name = $("input[name=name]").val();
+  obj.urlid = urlid;
+  obj.answers = answers;
+
+  $.ajax({
+    type: "POST",
+    url: "/App/submitData",
+    data: {
+      "data": JSON.stringify(obj)
+    },
+    complete: function(html){
+      console.log(html);
+    }
+  });
 });
 
 </script>
