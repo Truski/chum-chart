@@ -101,10 +101,9 @@ class App extends CI_Controller {
 		echo json_encode($result);
 	}
 
-	public function getChart($json) {
-		$obj = json_decode($json);
-
-		$urlid = $obj->urlid;
+	public function getChart($urlid) {
+		// Call model function
+		$all = getChart($urlid);
 
 		// Get urlid from table in database
 
