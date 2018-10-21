@@ -7,7 +7,6 @@ body, html {
 .bg {
     /* The image used */
     background-image: url("/assets/images/background.jpg");
-
 }
 </style>
 <button>Create a Chart</button>
