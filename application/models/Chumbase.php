@@ -40,6 +40,10 @@ class Chumbase extends CI_Model {
 		return $this->db->query('SELECT * FROM chart WHERE urlid=?', array($chartID))->result()[0];
 	}
 
+	public function exists($urlid){
+		return $this->db->query('SELECT COUNT(*) as count FROM chart WHERE urlid=?', array($urlid))->result()[0]->count > 0;
+	}
+
 	/*
 		
 	*/

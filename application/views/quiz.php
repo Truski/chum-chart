@@ -55,8 +55,8 @@ $qax = array(
 
 <div class="question-box" id="namequestion">
   <h2>What is your name?</h2>
-  <input type="text" name="name" /> 
-  <button id="nextbutton">Continue</button>
+  <p><input type="text" name="name" /> </p>
+  <p><a class="button" href="#" id="nextbutton">Continue</a></p>
 </div>
 
 <?php for($i = 0; $i < 50; $i += 5): ?>
@@ -83,15 +83,15 @@ $qax = array(
 <?php endfor;?>
 <div style="display:none" class="question-box" id="picturequestion">
   <h2>You're almost done! Just provide a link to your photo!</h2>
-  <input type="text" name="photourl" />
-  <button id="submitbutton">Finish</button>
+  <p><input type="text" name="photourl" /></p>
+  <p><a class="button" href="#" id="submitbutton">Finish</a></p>
 </div>
 <div style="display:none" class="question-box" id="submission">
   <h2>Thank you for submitting! Processing...</h2>
 </div>
 <div style="display:none" class="question-box" id="congratulations">
   <h2>Congratulations, your Alignment Chart is ready!</h2>
-  <a id="chartref" href="#">View your Chart Now</a>
+  <p><a id="chartref" href="#">View your Chart Now</a></p>
 </div>
 <div style="display:none" class="question-box" id="thankyou">
   <h2>You still need <span id="numppl"></span> more friends to do the alignment quiz!</h2>

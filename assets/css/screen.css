@@ -102,7 +102,10 @@ h4, h5, h6, p {
     background-color: #F2ECDA;
     padding: .5em;
     margin: 2em auto;
-    width: 100%;
+    width: 92%;
+  }
+  h1 {
+    font-size: 2.5em;
   }
 }
 
@@ -116,7 +119,7 @@ h4, h5, h6, p {
 }
 
 .answer:hover {
-  background-color: blue;
+  background-color: teal;
   cursor: pointer;
   color: #E8E8E8;
   font-weight: bold;
@@ -136,4 +139,28 @@ body, html {
 .bg {
     /* The image used */
     background-image: url("/assets/images/background.jpg");
+}
+
+.button {
+  font-size: 1.5em;
+  border: 2px solid black;
+  border-radius: 7px;
+  text-decoration: none;
+  color: white;
+  padding: 3px;
+  margin: 3px;
+  background-color: teal;
+}
+
+#start-now {
+  background-color: blue;
+}
+
+#join-existing {
+  background-color: green;
+}
+
+h2 {
+  font-size: 1.35em;
+  padding-bottom: .25em;
 }

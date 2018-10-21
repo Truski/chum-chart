@@ -19,6 +19,9 @@ class App extends CI_Controller {
 	public function quiz($urlid = NULL)
 	{
 		if($urlid != NULL){
+			if(!$this->chumbase->exists($urlid)){
+				header('Location: /?errornourl');
+			}
 			if($this->chumbase->getuserCount($urlid) == 9){
 				$this->getChart($urlid);
 				return;
