@@ -94,6 +94,7 @@ h4, h5, h6, p {
   background-color: #F2ECDA;
   padding: 2em;
   margin: 3em auto;
+  width: 70%;
 }
 
 @media screen and (min-width:900px) {
@@ -101,6 +102,7 @@ h4, h5, h6, p {
     background-color: #F2ECDA;
     padding: .5em;
     margin: 2em auto;
+    width: 100%;
   }
 }
 
