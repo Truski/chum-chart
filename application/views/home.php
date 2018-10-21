@@ -6,15 +6,8 @@ body, html {
 
 .bg {
     /* The image used */
-    background-image: url("cubes.jpg");
+    background-image: url("/assets/images/background.jpg");
 
-    /* Full height */
-    height: 100%; 
-
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 </style>
 <button>Create a Chart</button>
