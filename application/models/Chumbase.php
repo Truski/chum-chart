@@ -36,7 +36,7 @@ class Chumbase extends CI_Model {
 		Returns an object representing a row
 	*/
 	public function getChart($chartID){
-		return $this->db->query('SELECT * FROM chart WHERE chartid=?', array($chardID));
+		return $this->db->query('SELECT * FROM chart WHERE chartid=?', array($chartID));
 	}
 
 	/*
