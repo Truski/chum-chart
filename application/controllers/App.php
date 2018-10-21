@@ -54,7 +54,7 @@ class App extends CI_Controller {
 		$reassigned = array_fill(0, count($surveys), 0);
 		for ($i = 0; $i < count($best); $i++) {
 			for ($j = 0; $j < count($surveys); $j++) {
-				if ($best[$i] == $surveys[$j]) {
+				if ($best[$i]->id == $surveys[$j]->id) {
 					$reassigned[$i] = $surveys[$j];
 					break;
 				}
