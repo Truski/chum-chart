@@ -51,14 +51,14 @@ class Chumbase extends CI_Model {
 		returns array of objects where each object is a row in Survey table
 	*/
 	public function getSurveys($chartID){
-		return $this->db->query('SELECT * FROM user WHERE chartid = ?', array($chartID))->result();
+		return $this->db->query('SELECT * FROM user INNER JOIN chart ON user.chartid = chart.id WHERE urlid = ?', array($chartID))->result();
 	}
 
 	/*
 	 * yikes
 	 */
 	public function fillChart($chartID, $lg, $ln, $lc, $ng, $tn, $ne, $cg, $cn, $ce){
-		$this->db->query('UPDATE chart SET lg=?, ln=?, lc=?, ng=?, tn=?, ne=?, cg=?, cn=?, ce=?, WHERE chartid=?', array($lg, $ln, $lc, $ng, $tn, $ne, $cg, $cn, $ce, $chartID));  
-	}	
+		$this->db->query('UPDATE chart SET lg=?, ln=?, lc=?, ng=?, tn=?, ne=?, cg=?, cn=?, ce=? WHERE urlid=?', array($lg, $ln, $lc, $ng, $tn, $ne, $cg, $cn, $ce, $chartID));
+	}
 
 }

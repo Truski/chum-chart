@@ -51,7 +51,6 @@ class App extends CI_Controller {
 
 		$align = new ScoreToAlignment($ethics, $morality, $id);
 		$best = $align->go();
-
 		$reassigned = array_fill(0, count($surveys), 0);
 		for ($i = 0; $i < count($best); $i++) {
 			for ($j = 0; $j < count($surveys); $j++) {
