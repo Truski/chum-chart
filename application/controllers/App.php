@@ -6,7 +6,7 @@ class App extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('chumBase');
+		$this->load->model('chumbase');
 	}
 
 	public function index()
@@ -23,11 +23,11 @@ class App extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	public function submitData($json) {
+	public function submitData() {
+		$json = $this->input->post("quiz");
 		$obj = json_decode($json);
 
 		$name = $obj->name;
-		$email = $obj->email;
 		$urlid = $obj->urlid;
 
 		$dataObj = new dataToScore($obj->answers);
@@ -35,22 +35,34 @@ class App extends CI_Controller {
 		$mScore = $dataObj->mScore;
 
 		// Send survey data to database
-		InsertSurvey($urlid, $mScore, $eScore, $name, $email);
+		$success = $this->chumbase->insertQuiz($urlid, $mScore, $eScore, $name);
+
+		if($success == -1){ // Invalid quiz code
+			$result = new stdclass;
+			$result->success = false;
+			$result->message = "That quiz code is invalid!";
+			echo json_encode($result);
+			return;
+		} else if ($success == 0) { // Created a new chart 
+
+		}
 
 		// Ask server for number of users in urlid
-		$numSurveys = getUserCount($urlid);
+		$numSurveys = $this->chumbase->getUserCount($urlid);
 
 		// If there's 9 surveys, create the alignment chart!
 		if ($numSurveys == 9) {
 			createChart($urlid);
 		}
-		
+		$result = new stdclass;
+		$result->remaining = 9 - $numSurveys;
+		echo json_encode($result);
 	}
 
 	private function createChart($urlid) {
 
 		// Get all surveys with corresponding urlid
-		$surveys = getSurveys($urlid);
+		$surveys = $this->db->getSurveys($urlid);
 		
 		$ethics = array_fill(0, $surveys.length(), 0);
 		$morality = array_fill(0, $surveys.length(), 0);
@@ -61,7 +73,7 @@ class App extends CI_Controller {
 			$id[$i] = $surveys[$i]->id;
 		}
 
-		$align = ScoreToAlignment($ethics, $morality, $id);
+		$align = new ScoreToAlignment($ethics, $morality, $id);
 		$best = $align->go();
 
 		$reassigned = array_fill(0, $surveys.length(), 0);
