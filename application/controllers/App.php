@@ -23,6 +23,13 @@ class App extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	public function table($urlid = NULL)
+	{
+		$this->load->view('header');
+		$this->load->view('table');
+		$this->load->view('footer');
+	}
+
 	public function submitData() {
 		$json = $this->input->post("quiz");
 		$obj = json_decode($json);
