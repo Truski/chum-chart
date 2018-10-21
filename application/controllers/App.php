@@ -62,15 +62,15 @@ class App extends CI_Controller {
 		}
 
 		$this->chumbase->fillChart($urlid,
-			$reassigned[2],
-			$reassigned[5],
-			$reassigned[8],
-			$reassigned[1],
-			$reassigned[4],
-			$reassigned[7],
-			$reassigned[0],
-			$reassigned[3],
-			$reassigned[6]
+			$reassigned[2]->id,
+			$reassigned[5]->id,
+			$reassigned[8]->id,
+			$reassigned[1]->id,
+			$reassigned[4]->id,
+			$reassigned[7]->id,
+			$reassigned[0]->id,
+			$reassigned[3]->id,
+			$reassigned[6]->id
 		);
 
 	}
