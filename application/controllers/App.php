@@ -105,10 +105,10 @@ class App extends CI_Controller {
 		//this is an array of objects where each object is (id, name, ethics, morality)
 
 		//get name for each person lol
-		public $lgName; public $lnName; public $lcName; public $ngName;
-		public $tnName; public $neName; public $cgName; public $cnName; public $ceName;
+		$lgName; $lnName; $lcName; $ngName;
+		$tnName; $neName; $cgName; $cnName; $ceName;
 		//loop through people, if person id matches lg, ln, lc etc ---> assign name 
-		for each ($people as $person){
+		foreach ($people as $person){
 			switch($person->id){
 				case $all->lg:
 					$lgName = $person->name;
