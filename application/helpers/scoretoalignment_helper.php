@@ -27,22 +27,22 @@ class ScoreToAlignment {
  
     function __construct($xs, $ys, $ids) {
 
-        $array = array();
-        for ($i = 0; $i < $xs.length(); $i++) {
+        $array = array_fill(0, 9, new Point(0, 0, 0));
+        for ($i = 0; $i < count($xs); $i++) {
             $array[$i] = new Point($xs[$i], $ys[$i], $ids[$i]);
         }
 
         $this->points = $array;
         $this->fixed = array(
-            new Point(-1, 1),
-            new Point(0, 1),
-            new Point(1, 1),
-            new Point(-1, 0),
-            new Point(0, 0),
-            new Point(1, 0),
-            new Point(-1, -1),
-            new Point(0, -1),
-            new Point(1, -1)
+            new Point(-1, 1, 0),
+            new Point(0, 1, 0),
+            new Point(1, 1, 0),
+            new Point(-1, 0, 0),
+            new Point(0, 0, 0),
+            new Point(1, 0, 0),
+            new Point(-1, -1, 0),
+            new Point(0, -1, 0),
+            new Point(1, -1, 0)
         );
     }
  
@@ -102,18 +102,6 @@ class ScoreToAlignment {
     }
  
 }
- 
-$points = array(
-    new Point(-.5,.5, 0),
-    new Point(0, .5, 0),
-    new Point(.5, .5, 0),
-    new Point(-.5, 0, 0),
-    new Point(0, 0, 0),
-    new Point(.5, 0, 0),
-    new Point(-.5, -.5, 0),
-    new Point(0, -.5, 0),
-    new Point(.5, 0, 0)
-);
  
 // $o = new ScoreToAlignment($points);
 // var_dump($o->go());

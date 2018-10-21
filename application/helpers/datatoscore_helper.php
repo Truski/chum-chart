@@ -17,6 +17,7 @@ class datatoscore {
         }
         // Shift interval to [-1,1]
         $this->eScore = ($this->eScore*2) / (3*$bound) - 1;
+        $this->eScore = $this->eScore * -1;
 
         // Parse moral questions
         $this->mScore= 0;
@@ -25,6 +26,7 @@ class datatoscore {
         }
         // Shift interval to [-1,1]
         $this->mScore = ($this->mScore*2) / (3*$bound) - 1;
+        $this->mScore = $this->mScore * -1;
 
     }
 

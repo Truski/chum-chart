@@ -35,6 +35,47 @@ class App extends CI_Controller {
 		$this->load->view('footer');
 	}
 
+	private function createChart($urlid) {
+
+		// Get all surveys with corresponding urlid
+		$surveys = $this->chumbase->getSurveys($urlid);
+		
+		$ethics = array_fill(0, count($surveys), 0);
+		$morality = array_fill(0, count($surveys), 0);
+		$id = array_fill(0, count($surveys), 0);
+		for ($i = 0; $i < count($surveys); $i++) {
+			$ethics[$i] = $surveys[$i]->ethics;
+			$morality[$i] = $surveys[$i]->morality;
+			$id[$i] = $surveys[$i]->id;
+		}
+
+		$align = new ScoreToAlignment($ethics, $morality, $id);
+		$best = $align->go();
+
+		$reassigned = array_fill(0, count($surveys), 0);
+		for ($i = 0; $i < count($best); $i++) {
+			for ($j = 0; $j < count($surveys); $j++) {
+				if ($best[$i] == $surveys[$j]) {
+					$reassigned[$i] = $surveys[$j];
+					break;
+				}
+			}
+		}
+
+		$this->chumbase->fillChart($urlid,
+			$reassigned[2],
+			$reassigned[5],
+			$reassigned[8],
+			$reassigned[1],
+			$reassigned[4],
+			$reassigned[7],
+			$reassigned[0],
+			$reassigned[3],
+			$reassigned[6]
+		);
+
+	}
+
 	public function submitData() {
 		$json = $this->input->post("data");
 		$obj = json_decode($json);
@@ -54,52 +95,11 @@ class App extends CI_Controller {
 
 		// If there's 9 surveys, create the alignment chart!
 		if ($numSurveys == 9) {
-			createChart($urlid);
+			$this->createChart($urlid);
 		}
 		$result = new stdclass;
 		$result->remaining = 9 - $numSurveys;
 		echo json_encode($result);
-	}
-
-	private function createChart($urlid) {
-
-		// Get all surveys with corresponding urlid
-		$surveys = $this->db->getSurveys($urlid);
-		
-		$ethics = array_fill(0, $surveys.length(), 0);
-		$morality = array_fill(0, $surveys.length(), 0);
-		$id = array_fill(0, $surveys.length(), 0);
-		for ($i = 0; $i < $surveys.length(); $i++) {
-			$ethics[$i] = $surveys[$i]->ethics;
-			$morality[$i] = $surveys[$i]->morality;
-			$id[$i] = $surveys[$i]->id;
-		}
-
-		$align = new ScoreToAlignment($ethics, $morality, $id);
-		$best = $align->go();
-
-		$reassigned = array_fill(0, $surveys.length(), 0);
-		for ($i = 0; $i < $best.length(); $i++) {
-			for ($j = 0; $j < $surveys.length(); $j++) {
-				if ($best[$i] == $surveys[$j]) {
-					$reassigned[$i] = $surveys[$j];
-					break;
-				}
-			}
-		}
-
-		fillChart($urlid,
-			$reassigned[2],
-			$reassigned[5],
-			$reassigned[8],
-			$reassigned[1],
-			$reassigned[4],
-			$reassigned[7],
-			$reassigned[0],
-			$reassigned[3],
-			$reassigned[6]
-		);
-
 	}
 
 	public function getChart($json) {

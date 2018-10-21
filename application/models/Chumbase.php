@@ -51,7 +51,7 @@ class Chumbase extends CI_Model {
 		returns array of objects where each object is a row in Survey table
 	*/
 	public function getSurveys($chartID){
-		return $this->db->query('SELECT * FROM user WHERE chartid = ?', array($chartID));
+		return $this->db->query('SELECT * FROM user WHERE chartid = ?', array($chartID))->result();
 	}
 
 	/*
