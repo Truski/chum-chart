@@ -74,13 +74,14 @@ class App extends CI_Controller {
 
 		$name = $obj->name;
 		$urlid = $obj->urlid;
+		$photourl = $obj->photourl;
 
 		$dataObj = new dataToScore($obj->answers);
 		$eScore = $dataObj->eScore;
 		$mScore = $dataObj->mScore;
 
 		// Send survey data to database
-		$urlid = $this->chumbase->insertQuiz($urlid, $mScore, $eScore, $name);
+		$urlid = $this->chumbase->insertQuiz($urlid, $mScore, $eScore, $name, $photourl);
 
 		// Ask server for number of users in urlid
 		$numSurveys = $this->chumbase->getUserCount($urlid);
@@ -91,6 +92,7 @@ class App extends CI_Controller {
 		}
 		$result = new stdclass;
 		$result->remaining = 9 - $numSurveys;
+		$result->urlid = $urlid;
 		echo json_encode($result);
 	}
 

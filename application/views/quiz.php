@@ -81,10 +81,22 @@ $qax = array(
   </div>
 </div>
 <?php endfor;?>
-<div style="display:block" class="question-box" id="picturequestion">
-  <h2>You're almost done! Just upload your photo!</h2>
-  <input type="file" name="photo" />
+<div style="display:none" class="question-box" id="picturequestion">
+  <h2>You're almost done! Just provide a link to your photo!</h2>
+  <input type="text" name="photourl" />
   <button id="submitbutton">Finish</button>
+</div>
+<div style="display:none" class="question-box" id="submission">
+  <h2>Thank you for submitting! Processing...</h2>
+</div>
+<div style="display:none" class="question-box" id="congratulations">
+  <h2>Congratulations, your Alignment Chart is ready!</h2>
+  <a id="chartref" href="#">View your Chart Now</a>
+</div>
+<div style="display:none" class="question-box" id="thankyou">
+  <h2>You still need <span id="numppl"></span> more friends to do the alignment quiz!</h2>
+  <h3>Share the quiz with this URL:</h3>
+  <p id="shareref"></p>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -120,11 +132,14 @@ $('.answer').click(function(e) {
 
 $('#submitbutton').click(function() {
   console.log("LOLOL");
+  $('#picturequestion').hide();
+  $('#submission').show();
 
   var obj = {};
   obj.name = $("input[name=name]").val();
   obj.urlid = urlid;
   obj.answers = answers;
+  obj.photourl = $('input[name=photourl').val();
 
   $.ajax({
     type: "POST",
@@ -134,6 +149,17 @@ $('#submitbutton').click(function() {
     },
     complete: function(html){
       console.log(html);
+      $('#submission').hide();
+      var object = JSON.parse(html.responseText);
+      if(object.remaining == 0){
+        $('#congratulations').show();
+        $('#chartref').attr('href', '/App/quiz/'+object.urlid);
+      } else {
+        $('#thankyou').show();
+        console.log(object);
+        $('#numppl').text(object.remaining);
+        $('#shareref').text("http://localhost/App/quiz/" + object.urlid);
+      }
     }
   });
 });

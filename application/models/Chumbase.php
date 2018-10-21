@@ -13,7 +13,7 @@ class Chumbase extends CI_Model {
 		If chartid not found in Charts:
 		Insert a Chart(chartid, 1, null, null, ...)
 	*/
-	public function insertQuiz($urlid, $morality, $ethics, $name){
+	public function insertQuiz($urlid, $morality, $ethics, $name, $url){
 		$query = "SELECT MAX(id) as max FROM user;";
 		$userid = $this->db->query($query)->result()[0]->max + 1;
 		if($urlid == NULL){
@@ -21,12 +21,12 @@ class Chumbase extends CI_Model {
 			$urlid = rand(10000, 99999);
 			$this->db->query('INSERT INTO chart (urlid, creator, usrcount) VALUES (?, ?, 1)', array($urlid, $userid));
 			$chartid = $this->db->query('SELECT MAX(id) as max FROM chart')->result()[0]->max +1;
-			$this->db->query('INSERT INTO user (chartid, morality, ethics, name) VALUES (?, ?, ?, ?)', array($chartid, $morality, $ethics, $name));
+			$this->db->query('INSERT INTO user (chartid, morality, ethics, name, photourl) VALUES (?, ?, ?, ?, ?)', array($chartid, $morality, $ethics, $name, $url));
 			return $urlid;
 		} else {
 			// Just add it to the existing
 			$chartid = $this->db->query('SELECT id FROM chart WHERE urlid=?', array($urlid))->result()[0]->id;
-			$this->db->query('INSERT INTO user (chartid, morality, ethics, name) VALUES (?, ?, ?, ?)', array($chartid, $morality, $ethics, $name));
+			$this->db->query('INSERT INTO user (chartid, morality, ethics, name, photourl) VALUES (?, ?, ?, ?, ?)', array($chartid, $morality, $ethics, $name, $url));
 			$this->db->query('UPDATE chart SET usrcount=usrcount+1 WHERE urlid=?', array($urlid));
 			return $urlid;
 		}
