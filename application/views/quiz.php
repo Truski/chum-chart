@@ -55,7 +55,7 @@ $qax = array(
 
 <?php for($i = 0; $i < 10; $i += 5): ?>
 
-<div <?php if($i != 0) echo 'style="display:none"';?> class="question-box" id="question<?=$i?>">
+<div <?php if($i != 0) echo 'style="display:none"';?> class="question-box" id="question<?=$i/5+1?>">
   <h3 class="question"><?=($i/5+1)?>. <?=$question[i]?></h3>
 
   <div class="answer" data-answer-number="<?=$j?>">
@@ -77,7 +77,7 @@ $qax = array(
 
 <script>
 
-var i = 0;
+var i = 1;
 var answers = [];
 
 $('.answer').click(function(e) {
