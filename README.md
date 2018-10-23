@@ -45,3 +45,10 @@ Make a D&amp;D alignment chart with your friends.  Send your friends a link so t
 
 ## New Algorithm from Score to Alignment
 1. Examine every permutation of the 9 points to corners.  Calculate the distance between each point to its assigned corner.  The optimal solution is the least value.
+
+## TODO
+1. Iron out any bugs with initial implementation.
+2. Allow users to upload/take photos of themselves instead of providing a link.
+3. Make the site's CSS look good on all devices.
+4. Add names and/or individual labels (i.e. true neutral) to chart.
+5. Replace hard-coded questions with database of questions for hot swappable questions and answers.
